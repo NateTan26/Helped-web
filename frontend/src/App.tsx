@@ -7,6 +7,10 @@ import AppLayout from "@/components/AppLayout";
 import HomePage from "@/pages/HomePage";
 import AgencyProfile from "@/pages/AgencyProfile";
 import AddMaid from "@/pages/AddMaid";
+<<<<<<< HEAD
+=======
+import EditMaid from "@/pages/EditMaid";
+>>>>>>> 8e097706cde33f2043776e2bfb8f770544b0d87d
 import EditMaids from "@/pages/EditMaids";
 import MaidProfile from "@/pages/MaidProfile";
 import ChangePassword from "@/pages/ChangePassword";
@@ -29,6 +33,10 @@ const App = () => (
             <Route path="/add-maid" element={<AddMaid />} />
             <Route path="/edit-maids" element={<EditMaids />} />
             <Route path="/maid/:refCode" element={<MaidProfile />} />
+<<<<<<< HEAD
+=======
+            <Route path="/maid/:refCode/edit" element={<EditMaid />} />
+>>>>>>> 8e097706cde33f2043776e2bfb8f770544b0d87d
             <Route path="/change-password" element={<ChangePassword />} />
             <Route path="/enquiry" element={<Enquiry />} />
             <Route path="/employment-contracts" element={<EmploymentContracts />} />

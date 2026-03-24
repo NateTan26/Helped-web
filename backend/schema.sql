@@ -54,6 +54,7 @@ CREATE TABLE IF NOT EXISTS testimonials (
 -- Create index for company_id for faster lookups
 CREATE INDEX IF NOT EXISTS idx_testimonials_company ON testimonials(company_id);
 
+<<<<<<< HEAD
 -- Create enquiries table
 CREATE TABLE IF NOT EXISTS enquiries (
   id SERIAL PRIMARY KEY,
@@ -64,10 +65,13 @@ CREATE TABLE IF NOT EXISTS enquiries (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+=======
+>>>>>>> 8e097706cde33f2043776e2bfb8f770544b0d87d
 -- Create maids table
 CREATE TABLE IF NOT EXISTS maids (
   id SERIAL PRIMARY KEY,
   full_name VARCHAR(255) NOT NULL,
+<<<<<<< HEAD
   reference_code VARCHAR(50) NOT NULL UNIQUE,
   type VARCHAR(100) NOT NULL,
   nationality VARCHAR(100) NOT NULL,
@@ -88,9 +92,38 @@ CREATE TABLE IF NOT EXISTS maids (
   employment_history JSONB,
   introduction JSONB,
   agency_contact JSONB,
+=======
+  reference_code VARCHAR(100) NOT NULL UNIQUE,
+  type VARCHAR(100) NOT NULL,
+  nationality VARCHAR(100) NOT NULL,
+  date_of_birth DATE NOT NULL,
+  place_of_birth VARCHAR(255) NOT NULL,
+  height INTEGER NOT NULL,
+  weight INTEGER NOT NULL,
+  religion VARCHAR(100) NOT NULL,
+  marital_status VARCHAR(100) NOT NULL,
+  number_of_children INTEGER NOT NULL DEFAULT 0,
+  number_of_siblings INTEGER NOT NULL DEFAULT 0,
+  home_address TEXT NOT NULL,
+  airport_repatriation VARCHAR(255) NOT NULL,
+  education_level VARCHAR(255) NOT NULL,
+  language_skills JSONB NOT NULL DEFAULT '{}'::jsonb,
+  skills_preferences JSONB NOT NULL DEFAULT '{}'::jsonb,
+  work_areas JSONB NOT NULL DEFAULT '{}'::jsonb,
+  employment_history JSONB NOT NULL DEFAULT '[]'::jsonb,
+  introduction JSONB NOT NULL DEFAULT '{}'::jsonb,
+  agency_contact JSONB NOT NULL DEFAULT '{}'::jsonb,
+  is_public BOOLEAN NOT NULL DEFAULT FALSE,
+  has_photo BOOLEAN NOT NULL DEFAULT FALSE,
+>>>>>>> 8e097706cde33f2043776e2bfb8f770544b0d87d
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+<<<<<<< HEAD
 -- Create index for reference_code for faster lookups
 CREATE INDEX IF NOT EXISTS idx_maids_reference_code ON maids(reference_code);
+=======
+CREATE INDEX IF NOT EXISTS idx_maids_reference_code ON maids(reference_code);
+CREATE INDEX IF NOT EXISTS idx_maids_is_public ON maids(is_public);
+>>>>>>> 8e097706cde33f2043776e2bfb8f770544b0d87d
