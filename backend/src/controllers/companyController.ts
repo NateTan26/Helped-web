@@ -54,11 +54,40 @@ export const getCompanyProfile = async (req: Request, res: Response) => {
       [1]
     )
 
-    if (companyResult.rows.length === 0) {
-      return res.status(404).json({ error: 'Company profile not found' })
-    }
+    let company = companyResult.rows[0]
 
-    const company = companyResult.rows[0]
+    // If no company profile exists, create a default template record for first launch
+    if (!company) {
+      const insertResult = await query(
+        `INSERT INTO company_profile (
+          company_name,
+          short_name,
+          license_no,
+          address_line1,
+          postal_code,
+          country,
+          contact_person,
+          contact_phone,
+          contact_email,
+          office_hours_regular
+        ) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)
+         RETURNING *`,
+        [
+          'Default Maid Agency',
+          'Default Agency',
+          'LIC-0001',
+          '123 Default Street',
+          '123456',
+          'Singapore',
+          'Default Contact',
+          '12345678',
+          'info@defaultagency.sg',
+          'Mon-Fri 9am-6pm',
+        ]
+      )
+
+      company = insertResult.rows[0]
+    }
 
     // Fetch all MOM personnel for this company
     const momResult = await query(

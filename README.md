@@ -82,7 +82,7 @@ npm start
 ## Available Scripts
 
 ### Frontend
-- `npm run dev` - Start Vite development server
+- `npm run dev` - Start Vite development server (from `frontend`)
 - `npm run build` - Build for production
 - `npm run lint` - Run ESLint
 - `npm run preview` - Preview production build

@@ -53,3 +53,44 @@ CREATE TABLE IF NOT EXISTS testimonials (
 
 -- Create index for company_id for faster lookups
 CREATE INDEX IF NOT EXISTS idx_testimonials_company ON testimonials(company_id);
+
+-- Create enquiries table
+CREATE TABLE IF NOT EXISTS enquiries (
+  id SERIAL PRIMARY KEY,
+  username VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  phone VARCHAR(20),
+  message TEXT NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Create maids table
+CREATE TABLE IF NOT EXISTS maids (
+  id SERIAL PRIMARY KEY,
+  full_name VARCHAR(255) NOT NULL,
+  reference_code VARCHAR(50) NOT NULL UNIQUE,
+  type VARCHAR(100) NOT NULL,
+  nationality VARCHAR(100) NOT NULL,
+  date_of_birth DATE,
+  place_of_birth VARCHAR(255),
+  height DECIMAL(5,2),
+  weight DECIMAL(5,2),
+  religion VARCHAR(100),
+  marital_status VARCHAR(50),
+  number_of_children INTEGER DEFAULT 0,
+  number_of_siblings INTEGER DEFAULT 0,
+  home_address TEXT,
+  airport_repatriation VARCHAR(255),
+  education_level VARCHAR(255),
+  language_skills JSONB,
+  skills_preferences JSONB,
+  work_areas JSONB,
+  employment_history JSONB,
+  introduction JSONB,
+  agency_contact JSONB,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Create index for reference_code for faster lookups
+CREATE INDEX IF NOT EXISTS idx_maids_reference_code ON maids(reference_code);

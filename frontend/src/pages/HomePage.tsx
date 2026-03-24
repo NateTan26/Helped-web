@@ -1,5 +1,16 @@
 import { Link } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 import { UserCircle, UserPlus, Users, KeyRound, FileText } from "lucide-react";
+
+const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:3000";
+
+const fetchHealth = async () => {
+  const response = await fetch(`${API_BASE}/api/health`);
+  if (!response.ok) {
+    throw new Error("Backend health check failed");
+  }
+  return response.json();
+};
 
 const menuItems = [
   { icon: UserCircle, label: "Agency Profile", desc: "View and edit your agency details", path: "/agency-profile" },
@@ -10,6 +21,8 @@ const menuItems = [
 ];
 
 const HomePage = () => {
+  const { data: health, isLoading, isError } = useQuery(["health"], fetchHealth);
+
   return (
     <div className="page-container">
       <div className="content-card space-y-6" style={{ animationDelay: "0.05s" }}>
@@ -18,6 +31,11 @@ const HomePage = () => {
             <p className="text-sm text-muted-foreground">
               <span className="text-accent font-bold">86</span> maids in public, and{" "}
               <span className="text-destructive font-bold">10181</span> maids hidden.
+            </p>
+            <p className="text-xs">
+              {isLoading && "Checking backend status..."}
+              {isError && "Backend unreachable (check backend server)."}
+              {!isLoading && !isError && health?.status && `Backend status: ${health.status}`}
             </p>
           </div>
         </div>

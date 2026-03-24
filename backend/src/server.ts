@@ -1,6 +1,8 @@
 import express, { Express, Request, Response, ErrorRequestHandler } from 'express'
 import cors from 'cors'
 import companyRoutes from './routes/companyRoutes'
+import enquiriesRoutes from './routes/enquiriesRoutes'
+import maidsRoutes from './routes/maidsRoutes'
 
 const app: Express = express()
 const port = process.env.PORT || 3000
@@ -29,6 +31,12 @@ app.get('/api/data', (req: Request, res: Response) => {
 
 // Company management routes
 app.use('/api/company', companyRoutes)
+
+// Enquiries routes
+app.use('/api/enquiries', enquiriesRoutes)
+
+// Maids routes
+app.use('/api/maids', maidsRoutes)
 
 // Error handling middleware
 const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
